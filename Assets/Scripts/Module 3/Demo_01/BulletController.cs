@@ -3,16 +3,15 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] private float speed = 3; 
+    [SerializeField] private float speed = 3;
 
     private Transform myTransform;
     private float maxVerticalPosition;
     private Vector2 endPosition;
 
     private string[] makeMeHeavy = new string[750000];
-    
-    // Start is called before the first frame update
-    private void Start()
+
+    private void OnEnable()
     {
         myTransform = transform;
 
@@ -26,10 +25,11 @@ public class BulletController : MonoBehaviour
     {
         if (myTransform.position.y > maxVerticalPosition)
         {
-            Destroy(gameObject);
+            // Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
- 
+
     IEnumerator Move(float duration)
     {
         float elapsedTime = 0;
